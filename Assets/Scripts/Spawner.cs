@@ -5,9 +5,9 @@ using UnityEngine.Pool;
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField] private GameObject _spawnPoint;
+    [SerializeField] private SpawnPoints _spawnPoints;
+    [SerializeField] private TargetPoints _targetPoints;
     [SerializeField] private GameObject _spawningEnemy;
-    [SerializeField] private GameObject _targetPoint;
     [SerializeField] private float _repeatRate = 2f;
     [SerializeField] private int _poolCapacity = 10;
     [SerializeField] private int _poolMaxSize = 10;
@@ -15,7 +15,7 @@ public class Spawner : MonoBehaviour
     private ObjectPool<GameObject> _pool;
     private GameObject _currentObject;
     private List<GameObject> _activeEnemies = new List<GameObject>();
-    public GameObject TargetPoint => _targetPoint;
+    public Transform TargetPoint => _targetPoints.RandomTargetPoint;
 
     private void Awake()
     {
@@ -37,12 +37,10 @@ public class Spawner : MonoBehaviour
     private void ActionOnGet(GameObject obj)
     {
         if (obj.TryGetComponent<Soldier>(out var soldier) == false)
-        {
             return;
-        }
 
         soldier.IsCome += ObjectRelease;
-        obj.transform.position = _spawnPoint.transform.position;
+        obj.transform.position = _spawnPoints.RandomSpawnPoint.position;
         obj.SetActive(true);
         _activeEnemies.Add(obj);
     }

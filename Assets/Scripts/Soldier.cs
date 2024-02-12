@@ -7,13 +7,19 @@ public class Soldier : MonoBehaviour
 {
     [SerializeField] private Spawner _spawn;
     [SerializeField] private float _moveSpeed;
-    [SerializeField] private Animator _animator;
+
+    private Transform _target;
 
     public event Action IsCome;
 
+    private void Awake()
+    {
+        _target = DetermineTargetPoint();
+    }
+
     private void Update()
     {
-        GoToTargetPoint(_spawn.TargetPoint.transform);
+        GoToTargetPoint(_target);
     }
 
     private void GoToTargetPoint(Transform target)
@@ -25,8 +31,11 @@ public class Soldier : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.GetComponent<Target>() != false)
-        {
             IsCome?.Invoke();
-        }
+    }
+
+    private Transform DetermineTargetPoint()
+    {
+        return _spawn.TargetPoint.transform;
     }
 }
