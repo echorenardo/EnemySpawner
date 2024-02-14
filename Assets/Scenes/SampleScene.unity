@@ -445,8 +445,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.28544962, y: 0.22636929, z: -0.06958429, w: 0.928673}
-  m_LocalPosition: {x: -25.682638, y: 25.173187, z: -56.674717}
+  m_LocalRotation: {x: -0.22478898, y: 0.2190765, z: -0.05194298, w: -0.9480387}
+  m_LocalPosition: {x: 39.741116, y: 47.513496, z: -81.39647}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -885,7 +885,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spawnPoints: {fileID: 1628455478}
   _targetPoints: {fileID: 1250766819}
-  _spawningEnemy: {fileID: 1787008473}
+  _spawningSoldier: {fileID: 1787008474}
   _repeatRate: 2
   _poolCapacity: 10
   _poolMaxSize: 10
@@ -1004,6 +1004,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aba58135751362741811f7a1adc9d08f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _enemy: {fileID: 1787008473}
   _spawn: {fileID: 1628455477}
   _moveSpeed: 5
 --- !u!136 &1787008477
@@ -1117,8 +1118,8 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 963194228}
   - {fileID: 705507995}
+  - {fileID: 963194228}
   - {fileID: 1206973232}
   - {fileID: 1628455476}
   - {fileID: 1250766820}

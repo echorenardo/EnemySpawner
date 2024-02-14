@@ -7,22 +7,20 @@ public class Spawner : MonoBehaviour
 {
     [SerializeField] private SpawnPoints _spawnPoints;
     [SerializeField] private TargetPoints _targetPoints;
-    [SerializeField] private GameObject _spawningEnemy;
+    [SerializeField] private Soldier _spawningSoldier;
     [SerializeField] private float _repeatRate = 2f;
     [SerializeField] private int _poolCapacity = 10;
     [SerializeField] private int _poolMaxSize = 10;
 
-    private ObjectPool<GameObject> _pool;
-    private GameObject _currentObject;
-    private List<GameObject> _activeEnemies = new List<GameObject>();
+    private ObjectPool<Soldier> _pool;
     public Transform TargetPoint => _targetPoints.RandomTargetPoint;
 
     private void Awake()
     {
-        _pool = new ObjectPool<GameObject>(
-            createFunc: () => Instantiate(_spawningEnemy),
+        _pool = new ObjectPool<Soldier>(
+            createFunc: () => Instantiate(_spawningSoldier),
             actionOnGet: (enemy) => ActionOnGet(enemy),
-            actionOnRelease: (enemy) => enemy.SetActive(false),
+            actionOnRelease: (enemy) => enemy.gameObject.SetActive(false),
             actionOnDestroy: (enemy) => Destroy(enemy),
             collectionCheck: true,
             defaultCapacity: _poolCapacity,
@@ -34,15 +32,11 @@ public class Spawner : MonoBehaviour
         InvokeRepeating(nameof(GetEnemy), 0f, _repeatRate);
     }
 
-    private void ActionOnGet(GameObject obj)
+    private void ActionOnGet(Soldier soldier)
     {
-        if (obj.TryGetComponent<Soldier>(out var soldier) == false)
-            return;
-
         soldier.IsCome += ObjectRelease;
-        obj.transform.position = _spawnPoints.RandomSpawnPoint.position;
-        obj.SetActive(true);
-        _activeEnemies.Add(obj);
+        soldier.transform.position = _spawnPoints.RandomSpawnPoint.position;
+        soldier.gameObject.SetActive(true);
     }
 
     private void GetEnemy()
@@ -50,9 +44,8 @@ public class Spawner : MonoBehaviour
         _pool.Get();
     }
 
-    private void ObjectRelease()
+    private void ObjectRelease(Soldier enemy)
     {
-        _pool.Release(_activeEnemies[0]);
-        _activeEnemies.RemoveAt(0);
+        _pool.Release(enemy);
     }
 }
