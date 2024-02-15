@@ -38,9 +38,8 @@ public class Spawner : MonoBehaviour
         Target currentTarget = DetermineTarget();
         soldier.IsCome += ObjectRelease;
         soldier.transform.position = _spawnPoints.RandomSpawnPoint.transform.position;
+        soldier.SetTarget(currentTarget);
         soldier.gameObject.SetActive(true);
-        soldier.transform.position = Vector3.MoveTowards(transform.position, currentTarget.transform.position, _soldierMoveSpeed * Time.deltaTime);
-        soldier.transform.LookAt(currentTarget.gameObject.transform);
     }
 
     private void GetEnemy()

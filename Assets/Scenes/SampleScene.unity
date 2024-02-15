@@ -472,8 +472,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.22478898, y: 0.2190765, z: -0.05194298, w: -0.9480387}
-  m_LocalPosition: {x: 39.741116, y: 47.513496, z: -81.39647}
+  m_LocalRotation: {x: 0.1562066, y: 0.20027758, z: -0.03236578, w: 0.96666485}
+  m_LocalPosition: {x: -23.336136, y: 11.743172, z: -48.58716}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -768,9 +768,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _targetPoints:
-  - {fileID: 1528445086}
-  - {fileID: 1048658593}
-  - {fileID: 40248654}
+  - {fileID: 1528445089}
+  - {fileID: 1048658596}
+  - {fileID: 40248657}
 --- !u!4 &1250766820
 Transform:
   m_ObjectHideFlags: 0
@@ -945,9 +945,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawnPoints:
-  - {fileID: 1380967335}
-  - {fileID: 492118605}
-  - {fileID: 937248379}
+  - {fileID: 1380967341}
+  - {fileID: 492118611}
+  - {fileID: 937248385}
 --- !u!1001 &1787008472
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1048,6 +1048,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemy: {fileID: 1787008473}
+  _moveSpeed: 4
 --- !u!136 &1787008477
 CapsuleCollider:
   m_ObjectHideFlags: 0
