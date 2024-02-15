@@ -10,8 +10,6 @@ public class TargetPoints : MonoBehaviour
 
     private Target GetRandomTargetPoint()
     {
-        Target currentTarget = _targetPoints[Random.Range(0, _targetPoints.Count)];
-        Debug.Log(currentTarget.transform.position);
-        return currentTarget;
+        return _targetPoints[Random.Range(0, _targetPoints.Count)];
     }
 }

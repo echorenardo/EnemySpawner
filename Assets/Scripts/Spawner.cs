@@ -9,7 +9,6 @@ public class Spawner : MonoBehaviour
     [SerializeField] private SpawnPoints _spawnPoints;
     [SerializeField] private TargetPoints _targetPoints;
     [SerializeField] private Soldier _spawningSoldier;
-    [SerializeField] private float _soldierMoveSpeed;
     [SerializeField] private float _repeatRate = 2f;
     [SerializeField] private int _poolCapacity = 10;
     [SerializeField] private int _poolMaxSize = 10;
@@ -20,9 +19,9 @@ public class Spawner : MonoBehaviour
     {
         _pool = new ObjectPool<Soldier>(
             createFunc: () => Instantiate(_spawningSoldier),
-            actionOnGet: (enemy) => ActionOnGet(enemy),
-            actionOnRelease: (enemy) => enemy.gameObject.SetActive(false),
-            actionOnDestroy: (enemy) => Destroy(enemy),
+            actionOnGet: (soldier) => ActionOnGet(soldier),
+            actionOnRelease: (soldier) => soldier.gameObject.SetActive(false),
+            actionOnDestroy: (soldier) => Destroy(soldier),
             collectionCheck: true,
             defaultCapacity: _poolCapacity,
             maxSize: _poolMaxSize);
@@ -47,9 +46,9 @@ public class Spawner : MonoBehaviour
         _pool.Get();
     }
 
-    private void ObjectRelease(Soldier enemy)
+    private void ObjectRelease(Soldier soldier)
     {
-        _pool.Release(enemy);
+        _pool.Release(soldier);
     }
 
     private Target DetermineTarget()
