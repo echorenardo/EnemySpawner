@@ -1047,7 +1047,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aba58135751362741811f7a1adc9d08f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemy: {fileID: 1787008473}
+  _prefab: {fileID: 1787008478}
   _moveSpeed: 4
 --- !u!136 &1787008477
 CapsuleCollider:

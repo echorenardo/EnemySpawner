@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Soldier : MonoBehaviour
 {
-    [SerializeField] private GameObject _enemy;
+    [SerializeField] private Rigidbody _prefab;
     [SerializeField] private float _moveSpeed;
 
     private Target _target;
@@ -20,8 +20,8 @@ public class Soldier : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.GetComponent<Target>() != false)
-            IsCome?.Invoke(_enemy.GetComponent<Soldier>());
+        if (other.gameObject.TryGetComponent<Target>(out Target reachedTarget) != false)
+            IsCome?.Invoke(_prefab.GetComponent<Soldier>());
     }
 
     public void SetTarget(Target target)
