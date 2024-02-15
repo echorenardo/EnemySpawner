@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class SpawnPoints : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> _spawnPoints = new List<GameObject>();
+    [SerializeField] private List<Spawn> _spawnPoints;
 
-    public Transform RandomSpawnPoint => GetRandomTargetPoint();
+    public Spawn RandomSpawnPoint => GetRandomSpawnPoint();
 
-    private Transform GetRandomTargetPoint()
+    private Spawn GetRandomSpawnPoint()
     {
-        return _spawnPoints[Random.Range(0, _spawnPoints.Count)].transform;
+        return _spawnPoints[Random.Range(0, _spawnPoints.Count)];
     }
 }

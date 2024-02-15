@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class TargetPoints : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> _targetPoints = new List<GameObject>();
+    [SerializeField] private List<Target> _targetPoints;
 
-    public Transform RandomTargetPoint => GetRandomSpawnPoint();
+    public Target RandomTargetPoint => GetRandomTargetPoint();
 
-    private Transform GetRandomSpawnPoint()
+    private Target GetRandomTargetPoint()
     {
-        return _targetPoints[Random.Range(0, _targetPoints.Count)].transform;
+        return _targetPoints[Random.Range(0, _targetPoints.Count)];
     }
 }
