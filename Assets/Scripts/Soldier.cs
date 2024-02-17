@@ -1,16 +1,23 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class Soldier : MonoBehaviour
 {
     [SerializeField] private Rigidbody _prefab;
     [SerializeField] private float _moveSpeed;
+    [SerializeField] private Animator _animator;
 
     private Target _target;
 
     public event Action<Soldier> IsCome;
+
+    private void Start()
+    {
+        _animator.SetFloat("Speed", 10);
+    }
 
     private void Update()
     {

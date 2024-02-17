@@ -82,6 +82,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 4171728299421299460}
   m_SourcePrefab: {fileID: 100100000, guid: fcb334eb247ae3e488abb081c847cf09, type: 3}
+--- !u!95 &3848977487255498473 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9500000, guid: fcb334eb247ae3e488abb081c847cf09, type: 3}
+  m_PrefabInstance: {fileID: 3848977487262784393}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &3848977487262883157 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100060, guid: fcb334eb247ae3e488abb081c847cf09, type: 3}
@@ -101,6 +106,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _prefab: {fileID: 4171728299421299460}
   _moveSpeed: 4
+  _animator: {fileID: 3848977487255498473}
 --- !u!136 &3894025002311308033
 CapsuleCollider:
   m_ObjectHideFlags: 0
