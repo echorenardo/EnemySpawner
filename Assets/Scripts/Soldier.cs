@@ -13,7 +13,7 @@ public class Soldier : MonoBehaviour
     [SerializeField] private Animator _animator;
 
     private Target _target;
-    private float triggerDistance = 1f;
+    private float _triggerDistance = 1f;
 
     public void ChangeState(bool state) => gameObject.SetActive(state);
 
@@ -30,7 +30,7 @@ public class Soldier : MonoBehaviour
 
     private void Update()
     {
-        if ((_target.transform.position - transform.position).magnitude < triggerDistance)
+        if ((_target.transform.position - transform.position).magnitude < _triggerDistance)
         {
             ChangeState(false);
             Clear();
