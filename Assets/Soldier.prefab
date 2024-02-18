@@ -105,7 +105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _prefab: {fileID: 4171728299421299460}
-  _moveSpeed: 4
+  _maxMoveSpeed: 4
   _animator: {fileID: 3848977487255498473}
 --- !u!136 &3894025002311308033
 CapsuleCollider:

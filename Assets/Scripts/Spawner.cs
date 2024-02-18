@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Pool;
+using System.Linq;
+using System.Collections.Generic;
 
 public class Spawner : MonoBehaviour
 {
@@ -9,21 +8,18 @@ public class Spawner : MonoBehaviour
     [SerializeField] private TargetPoints _targetPoints;
     [SerializeField] private Soldier _spawningSoldier;
     [SerializeField] private float _repeatRate = 2f;
-    [SerializeField] private int _poolCapacity = 2;
-    [SerializeField] private int _poolMaxSize = 5;
+    [SerializeField] private int _poolMaxSize = 10;
 
-    private ObjectPool<Soldier> _pool;
+    private List<Soldier> _pool = new List<Soldier>();
 
     private void Awake()
     {
-        _pool = new ObjectPool<Soldier>(
-            createFunc: () => Instantiate(_spawningSoldier),
-            actionOnGet: (soldier) => ActionOnGet(soldier),
-            actionOnRelease: (soldier) => soldier.gameObject.SetActive(false),
-            actionOnDestroy: (soldier) => Destroy(soldier),
-            collectionCheck: true,
-            defaultCapacity: _poolCapacity,
-            maxSize: _poolMaxSize);
+        for (int i = 0; i < _poolMaxSize; i++)
+        {
+            Soldier soldier = Instantiate(_spawningSoldier);
+            soldier.ChangeState(false);
+            _pool.Add(soldier);
+        }
     }
 
     private void Start()
@@ -31,23 +27,15 @@ public class Spawner : MonoBehaviour
         InvokeRepeating(nameof(GetEnemy), 0f, _repeatRate);
     }
 
-    private void ActionOnGet(Soldier soldier)
-    {
-        Target currentTarget = DetermineTarget();
-        soldier.IsCome += ObjectRelease;
-        soldier.transform.position = _spawnPoints.RandomSpawnPoint.transform.position;
-        soldier.SetTarget(currentTarget);
-        soldier.gameObject.SetActive(true);
-    }
-
     private void GetEnemy()
     {
-        _pool.Get();
-    }
+        Soldier soldier = _pool.FirstOrDefault(currentSoldier => currentSoldier.gameObject.activeSelf == false);
 
-    private void ObjectRelease(Soldier soldier)
-    {
-        _pool.Release(soldier);
+        if (soldier != null)
+        {
+            soldier.transform.position = _spawnPoints.RandomSpawnPoint.transform.position;
+            soldier.SetTarget(DetermineTarget());
+        }
     }
 
     private Target DetermineTarget()
